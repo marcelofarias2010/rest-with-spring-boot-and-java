@@ -3,7 +3,7 @@ package br.com.farias.rest_with_spring_boot_and_java.unitetests.mapper.mocks;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.farias.rest_with_spring_boot_and_java.data.dto.PersonDTO;
+import br.com.farias.rest_with_spring_boot_and_java.data.dto.v1.PersonDTO;
 import br.com.farias.rest_with_spring_boot_and_java.model.Person;
 
 public class MockPerson {
