@@ -17,4 +17,7 @@ logging:
   level:
    # root: WARN
      br.com.farias.rest_with_spring_boot_and_java: DEBUG
-
+spring-doc:
+  paths-to-match: /api/**/v1/**
+  swagger-ui:
+    use-root-path: true

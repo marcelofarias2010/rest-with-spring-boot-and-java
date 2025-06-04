@@ -15,7 +15,7 @@ import java.util.Objects;
 
 //@JsonPropertyOrder({"id","first_name","last_name","address","gender"})
 @JsonFilter("PersonFilter")
-public class PersonDTO implements Serializable {
+public class PersonDTO extends br.com.farias.rest_with_spring_boot_and_java.data.dto.v4.PersonDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

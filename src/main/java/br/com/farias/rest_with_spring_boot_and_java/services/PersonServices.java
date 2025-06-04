@@ -6,6 +6,7 @@ package br.com.farias.rest_with_spring_boot_and_java.services;
 
 import br.com.farias.rest_with_spring_boot_and_java.controllers.PersonController;
 import br.com.farias.rest_with_spring_boot_and_java.data.dto.v4.PersonDTO;
+import br.com.farias.rest_with_spring_boot_and_java.exception.RequiredObjectIsNullException;
 import br.com.farias.rest_with_spring_boot_and_java.exception.ResourceNotFoundException;
 
 import static br.com.farias.rest_with_spring_boot_and_java.mapper.ObjectMapper.parseListObjects;
@@ -72,6 +73,8 @@ public class PersonServices {
 
     public PersonDTO create(PersonDTO person) {
 
+        if(person == null) throw new RequiredObjectIsNullException();
+
         logger.info("Creating one Person!");
         var entity = parseObject(person, Person.class);
 
@@ -89,6 +92,8 @@ public class PersonServices {
 //    }
 
     public PersonDTO update(PersonDTO person) {
+
+        if(person == null) throw new RequiredObjectIsNullException();
 
         logger.info("Updating one Person!");
         Person entity = repository.findById(person.getId())
