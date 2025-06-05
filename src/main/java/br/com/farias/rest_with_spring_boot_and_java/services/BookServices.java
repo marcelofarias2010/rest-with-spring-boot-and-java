@@ -50,10 +50,12 @@ public class BookServices {
         if (book == null) throw new RequiredObjectIsNullException();
 
         logger.info("Creating one Book!");
+
         var entity = parseObject(book, Book.class);
 
         var dto = parseObject(repository.save(entity), BookDTO.class);
         addHateoasLinks(dto);
+
         return dto;
     }
 
@@ -66,7 +68,7 @@ public class BookServices {
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 
         entity.setAuthor(book.getAuthor());
-        entity.setLaunchDate(book.getLounchDate());
+        entity.setLaunchDate(book.getLaunchDate());
         entity.setPrice(book.getPrice());
         entity.setTitle(book.getTitle());
 

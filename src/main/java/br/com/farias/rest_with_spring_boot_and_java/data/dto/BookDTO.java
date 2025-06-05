@@ -1,6 +1,5 @@
 package br.com.farias.rest_with_spring_boot_and_java.data.dto;
 
-import br.com.farias.rest_with_spring_boot_and_java.model.Book;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
@@ -13,7 +12,7 @@ public class BookDTO extends RepresentationModel<BookDTO> implements Serializabl
 
     private Long Id;
     private String author;
-    private Date lounchDate;
+    private Date launchDate;
     private double price;
     private String title;
 
@@ -35,12 +34,12 @@ public class BookDTO extends RepresentationModel<BookDTO> implements Serializabl
         this.author = author;
     }
 
-    public Date getLounchDate() {
-        return lounchDate;
+    public Date getLaunchDate() {
+        return launchDate;
     }
 
-    public void setLounchDate(Date lounchDate) {
-        this.lounchDate = lounchDate;
+    public void setLaunchDate(Date launchDate) {
+        this.launchDate = launchDate;
     }
 
     public double getPrice() {
@@ -62,12 +61,13 @@ public class BookDTO extends RepresentationModel<BookDTO> implements Serializabl
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         BookDTO bookDTO = (BookDTO) o;
-        return Double.compare(price, bookDTO.price) == 0 && Objects.equals(Id, bookDTO.Id) && Objects.equals(author, bookDTO.author) && Objects.equals(lounchDate, bookDTO.lounchDate) && Objects.equals(title, bookDTO.title);
+        return Double.compare(price, bookDTO.price) == 0 && Objects.equals(Id, bookDTO.Id) && Objects.equals(author, bookDTO.author) && Objects.equals(launchDate, bookDTO.launchDate) && Objects.equals(title, bookDTO.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Id, author, lounchDate, price, title);
+        return Objects.hash(super.hashCode(), Id, author, launchDate, price, title);
     }
 }

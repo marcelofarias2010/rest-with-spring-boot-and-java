@@ -39,7 +39,6 @@ class PersonServicesTest {
         MockitoAnnotations.openMocks(this);
     }
 
-
     @Test
     void findById() {
         Person person = input.mockEntity(1);
@@ -149,18 +148,6 @@ class PersonServicesTest {
         assertEquals("Female", result.getGender());
     }
 
-//    @Test
-//    void testCreateWithNullPerson() {
-//        Exception exception = assertThrows(RequiredObjectIsNullException.class,
-//                () -> {
-//                    services.create(null);
-//                });
-//        String expectedMessage = "It is not allowed to persist a null object!";
-//        String actualMessage = exception.getMessage();
-//
-//        assertTrue(actualMessage.contains(expectedMessage));
-//    }
-
     @Test
     void update() {
         Person person = input.mockEntity(1);
@@ -219,17 +206,7 @@ class PersonServicesTest {
         assertEquals("Female", result.getGender());
     }
 
-//    @Test
-//    void testUpdateWithNullPerson() {
-//        Exception exception = assertThrows(RequiredObjectIsNullException.class,
-//                () -> {
-//                    services.update(null);
-//                });
-//        String expectedMessage = "It is not allowed to persist a null object!";
-//        String actualMessage = exception.getMessage();
-//
-//        assertTrue(actualMessage.contains(expectedMessage));
-//    }
+
 
     @Test
     void delete() {
