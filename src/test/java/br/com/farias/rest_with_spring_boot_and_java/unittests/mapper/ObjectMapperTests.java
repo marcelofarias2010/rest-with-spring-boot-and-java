@@ -1,4 +1,4 @@
-package br.com.farias.rest_with_spring_boot_and_java.unitetests.mapper;
+package br.com.farias.rest_with_spring_boot_and_java.unittests.mapper;
 import static br.com.farias.rest_with_spring_boot_and_java.mapper.ObjectMapper.parseListObjects;
 import static br.com.farias.rest_with_spring_boot_and_java.mapper.ObjectMapper.parseObject;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 
 import br.com.farias.rest_with_spring_boot_and_java.data.dto.v1.PersonDTO;
-import br.com.farias.rest_with_spring_boot_and_java.unitetests.mapper.mocks.MockPerson;
+import br.com.farias.rest_with_spring_boot_and_java.unittests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,5 +1,6 @@
 package br.com.farias.rest_with_spring_boot_and_java.controllers;
 
+import br.com.farias.rest_with_spring_boot_and_java.config.WebConstants;
 import br.com.farias.rest_with_spring_boot_and_java.controllers.docs.BookControllerDocs;
 import br.com.farias.rest_with_spring_boot_and_java.data.dto.BookDTO;
 import br.com.farias.rest_with_spring_boot_and_java.services.BookServices;
@@ -19,7 +20,7 @@ public class BookController implements BookControllerDocs {
     @Autowired
     private BookServices services;
 
-    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, WebConstants.APPLICATION_YML})
     @Override
     public List<BookDTO> findAll() {
         return services.findAll();
@@ -27,7 +28,7 @@ public class BookController implements BookControllerDocs {
 
     @GetMapping(
             value = "/{id}",
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE}
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, WebConstants.APPLICATION_YML}
     )
     @Override
     public BookDTO findById(@PathVariable("id") Long id) {
@@ -42,8 +43,8 @@ public class BookController implements BookControllerDocs {
     }
 
     @PostMapping(
-            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE}
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, WebConstants.APPLICATION_YML},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, WebConstants.APPLICATION_YML}
     )
     @Override
     public BookDTO create(@RequestBody BookDTO book) {
@@ -54,11 +55,11 @@ public class BookController implements BookControllerDocs {
             consumes = {
                     MediaType.APPLICATION_JSON_VALUE,
                     MediaType.APPLICATION_XML_VALUE,
-                    MediaType.APPLICATION_YAML_VALUE},
+                    WebConstants.APPLICATION_YML},
             produces = {
                     MediaType.APPLICATION_JSON_VALUE,
                     MediaType.APPLICATION_XML_VALUE,
-                    MediaType.APPLICATION_YAML_VALUE}
+                    WebConstants.APPLICATION_YML}
     )
     @Override
     public BookDTO update(@RequestBody BookDTO book) {

@@ -1,10 +1,11 @@
-package br.com.farias.rest_with_spring_boot_and_java.services;
+package br.com.farias.rest_with_spring_boot_and_java.unittests.services;
 
 import br.com.farias.rest_with_spring_boot_and_java.data.dto.BookDTO;
 import br.com.farias.rest_with_spring_boot_and_java.exception.RequiredObjectIsNullException;
 import br.com.farias.rest_with_spring_boot_and_java.model.Book;
 import br.com.farias.rest_with_spring_boot_and_java.repository.BookRepository;
-import br.com.farias.rest_with_spring_boot_and_java.unitetests.mapper.mocks.MockBook;
+import br.com.farias.rest_with_spring_boot_and_java.services.BookServices;
+import br.com.farias.rest_with_spring_boot_and_java.unittests.mapper.mocks.MockBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

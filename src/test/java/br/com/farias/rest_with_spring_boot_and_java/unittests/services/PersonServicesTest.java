@@ -1,10 +1,10 @@
-package br.com.farias.rest_with_spring_boot_and_java.services;
+package br.com.farias.rest_with_spring_boot_and_java.unittests.services;
 
-import br.com.farias.rest_with_spring_boot_and_java.data.dto.v4.PersonDTO;
-import br.com.farias.rest_with_spring_boot_and_java.exception.RequiredObjectIsNullException;
+import br.com.farias.rest_with_spring_boot_and_java.data.dto.v1.PersonDTO;
 import br.com.farias.rest_with_spring_boot_and_java.model.Person;
 import br.com.farias.rest_with_spring_boot_and_java.repository.PersonRepository;
-import br.com.farias.rest_with_spring_boot_and_java.unitetests.mapper.mocks.MockPerson;
+import br.com.farias.rest_with_spring_boot_and_java.services.PersonServices;
+import br.com.farias.rest_with_spring_boot_and_java.unittests.mapper.mocks.MockPerson;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -205,8 +205,6 @@ class PersonServicesTest {
         assertEquals("Last Name Test1", result.getLastName());
         assertEquals("Female", result.getGender());
     }
-
-
 
     @Test
     void delete() {

@@ -1,4 +1,4 @@
-package br.com.farias.rest_with_spring_boot_and_java.unitetests.mapper.mocks;
+package br.com.farias.rest_with_spring_boot_and_java.unittests.mapper.mocks;
 
 import br.com.farias.rest_with_spring_boot_and_java.data.dto.BookDTO;
 import br.com.farias.rest_with_spring_boot_and_java.model.Book;

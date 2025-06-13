@@ -1,3 +1,5 @@
+server:
+  port: 8888
 cors:
   originPatterns: http://localhost:8080,http://localhost:3000,https://agenciasus.org.br
 spring:
@@ -5,9 +7,6 @@ spring:
     name: rest-with-spring-boot-and-java
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/rest_with_spring_boot?useTimezone=true&serverTimezone=UTC
-    username: root
-    password: Senha10adaps
   jpa:
     hibernate:
       ddl-auto: none
@@ -17,8 +16,8 @@ spring:
     open-in-view: false
 logging:
   level:
-   # root: WARN
-     br.com.farias.rest_with_spring_boot_and_java: DEBUG
+    root: INFO
+   #  br.com.farias.rest_with_spring_boot_and_java: DEBUG
 spring-doc:
   paths-to-match: /api/**/v1/**
   swagger-ui:
