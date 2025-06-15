@@ -1,8 +1,9 @@
 package br.com.farias.rest_with_spring_boot_and_java.integrationtests.controllers.withxml;
 
 import br.com.farias.rest_with_spring_boot_and_java.config.TestConfigs;
-//import br.com.farias.rest_with_spring_boot_and_java.integrationtests.dto.PersonDTO;
-import br.com.farias.rest_with_spring_boot_and_java.data.dto.PersonDTO;
+import br.com.farias.rest_with_spring_boot_and_java.integrationtests.dto.PersonDTO;
+//import br.com.farias.rest_with_spring_boot_and_java.data.dto.PersonDTO;
+import br.com.farias.rest_with_spring_boot_and_java.integrationtests.dto.wrapper.xml.PagedModelPerson;
 import br.com.farias.rest_with_spring_boot_and_java.integrationtests.testcontainers.AbstractIntegrationTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -152,9 +153,11 @@ class PersonControllerXmlTest extends AbstractIntegrationTest {
 
     @Test
     @Order(6)
+    //@Disabled("REASON: Still Under Development")
     void findAllTest() throws JsonProcessingException {
         var content = given().spec(specification)
                 .accept(ContentType.XML)
+                .queryParam("page",3,"size",12,"direction","asc")
                 .when()
                 .get()
                 .then()
@@ -163,19 +166,51 @@ class PersonControllerXmlTest extends AbstractIntegrationTest {
                 .body()
                 .asString();
 
-        List<PersonDTO> people = xmlMapper.readValue(content, new TypeReference<>() {});
+        PagedModelPerson wrapper = xmlMapper.readValue(content, PagedModelPerson.class);
+        List<PersonDTO> people = wrapper.getContent();
 
         assertNotNull(people);
 
         PersonDTO personOne = people.get(0);
-        assertEquals(1, personOne.getId());
-        assertEquals("Marcelo", personOne.getFirstName().trim()); // Correção na asserção
-        assertEquals("Farias", personOne.getLastName());
+        assertEquals(327, personOne.getId());
+        assertEquals("Alvera", personOne.getFirstName());
+        assertEquals("McCaughey", personOne.getLastName());
 
         PersonDTO personFour = people.get(3);
-        assertEquals(5, personFour.getId());
-        assertEquals("Luciana ", personFour.getFirstName());
-        assertEquals("Andrade", personFour.getLastName());
+        assertEquals(498, personFour.getId());
+        assertEquals("Alys", personFour.getFirstName());
+        assertEquals("Ryce", personFour.getLastName());
+    }
+
+    @Test
+    @Order(6)
+    void findByNameTest() throws JsonProcessingException {
+        var content = given().spec(specification)
+                .accept(ContentType.XML)
+                .pathParam("firstName","and")
+                .queryParam("page",0,"size",12,"direction","asc")
+                .when()
+                .get("findPeopleByName/{firstName}")
+                .then()
+                .statusCode(200)
+                .extract()
+                .body()
+                .asString();
+
+        PagedModelPerson wrapper = xmlMapper.readValue(content, PagedModelPerson.class);
+        List<PersonDTO> people = wrapper.getContent();
+
+        assertNotNull(people);
+
+        PersonDTO personOne = people.get(0);
+        assertEquals(163, personOne.getId());
+        assertEquals("Alisander", personOne.getFirstName());
+        assertEquals("Currell", personOne.getLastName());
+
+        PersonDTO personFour = people.get(3);
+        assertEquals(74, personFour.getId());
+        assertEquals("Andrew", personFour.getFirstName());
+        assertEquals("Ondrich", personFour.getLastName());
     }
 
     private RequestSpecification buildSpecification() {

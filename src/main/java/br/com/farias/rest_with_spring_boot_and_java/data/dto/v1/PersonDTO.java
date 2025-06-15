@@ -3,12 +3,15 @@ package br.com.farias.rest_with_spring_boot_and_java.data.dto.v1;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 //@JsonPropertyOrder({"id","first_name","last_name","address","gender"})
 //@JsonFilter("PersonFilter")
 @JacksonXmlRootElement(localName = "PersonDTO")
+@Relation(collectionRelation = "people")
 public class PersonDTO extends RepresentationModel<PersonDTO> implements Serializable {
 
     private static final long serialVersionUID = 1L;
