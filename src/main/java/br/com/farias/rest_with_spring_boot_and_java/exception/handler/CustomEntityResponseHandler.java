@@ -1,6 +1,7 @@
 package br.com.farias.rest_with_spring_boot_and_java.exception.handler;
 
 import br.com.farias.rest_with_spring_boot_and_java.exception.ExceptionResponse;
+import br.com.farias.rest_with_spring_boot_and_java.exception.FileStorageException;
 import br.com.farias.rest_with_spring_boot_and_java.exception.RequiredObjectIsNullException;
 import br.com.farias.rest_with_spring_boot_and_java.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.nio.file.FileAlreadyExistsException;
 import java.util.Date;
 
 @ControllerAdvice
@@ -45,5 +47,25 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
                 request.getDescription(false));
 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(FileAlreadyExistsException.class)
+    public final ResponseEntity<ExceptionResponse> handleFileAlreadyExistsException(Exception ex, WebRequest request) {
+        ExceptionResponse response = new ExceptionResponse(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(FileStorageException.class)
+    public final ResponseEntity<ExceptionResponse> handleFileStorageException(Exception ex, WebRequest request) {
+        ExceptionResponse response = new ExceptionResponse(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
