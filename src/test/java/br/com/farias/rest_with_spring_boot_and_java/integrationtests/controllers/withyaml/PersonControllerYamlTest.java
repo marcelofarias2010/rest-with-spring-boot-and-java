@@ -183,14 +183,14 @@ class PersonControllerYamlTest extends AbstractIntegrationTest {
         assertNotNull(people, "A lista de pessoas não deveria ser nula");
 
         PersonDTO personOne = people.get(0);
-        assertEquals(701, personOne.getId());
+        assertEquals(702, personOne.getId());
         assertEquals("Abba", personOne.getFirstName());
         assertEquals("Bonellie", personOne.getLastName());
         assertEquals("Suite 35", personOne.getAddress());
         assertTrue(personOne.getEnabled());
 
         PersonDTO personFour = people.get(3);
-        assertEquals(388, personFour.getId());
+        assertEquals(389, personFour.getId());
         assertEquals("Adara", personFour.getFirstName());
         assertEquals("Lehmann", personFour.getLastName());
         assertEquals("PO Box 24269", personFour.getAddress());
@@ -225,14 +225,14 @@ class PersonControllerYamlTest extends AbstractIntegrationTest {
         assertNotNull(people, "A lista de pessoas não deveria ser nula");
 
         PersonDTO personOne = people.get(0);
-        assertEquals(163, personOne.getId());
+        assertEquals(164, personOne.getId());
         assertEquals("Alisander", personOne.getFirstName());
         assertEquals("Currell", personOne.getLastName());
         assertEquals("Suite 98", personOne.getAddress());
         assertTrue(personOne.getEnabled());
 
         PersonDTO personFour = people.get(3);
-        assertEquals(74, personFour.getId());
+        assertEquals(75, personFour.getId());
         assertEquals("Andrew", personFour.getFirstName());
         assertEquals("Ondrich", personFour.getLastName());
         assertEquals("Suite 80", personFour.getAddress());

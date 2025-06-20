@@ -10,7 +10,7 @@ public class BookDTO extends RepresentationModel<BookDTO> implements Serializabl
 
     private static final long serialVersionUID = 1L;
 
-    private Long Id;
+    private Long id;
     private String author;
     private Date launchDate;
     private double price;
@@ -19,11 +19,11 @@ public class BookDTO extends RepresentationModel<BookDTO> implements Serializabl
     public BookDTO(){}
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getAuthor() {
@@ -63,11 +63,11 @@ public class BookDTO extends RepresentationModel<BookDTO> implements Serializabl
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         BookDTO bookDTO = (BookDTO) o;
-        return Double.compare(price, bookDTO.price) == 0 && Objects.equals(Id, bookDTO.Id) && Objects.equals(author, bookDTO.author) && Objects.equals(launchDate, bookDTO.launchDate) && Objects.equals(title, bookDTO.title);
+        return Double.compare(price, bookDTO.price) == 0 && Objects.equals(id, bookDTO.id) && Objects.equals(author, bookDTO.author) && Objects.equals(launchDate, bookDTO.launchDate) && Objects.equals(title, bookDTO.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), Id, author, launchDate, price, title);
+        return Objects.hash(super.hashCode(), id, author, launchDate, price, title);
     }
 }

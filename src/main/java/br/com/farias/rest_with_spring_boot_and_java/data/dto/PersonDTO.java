@@ -65,6 +65,11 @@ public class PersonDTO implements Serializable {
         this.enabled = enabled;
     }
 
+    public String getName() {
+        return (firstName != null ? firstName : "") +
+                (lastName != null ? " " + lastName : "");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

@@ -25,8 +25,9 @@ spring:
       max-request-size: 215 MB
 logging:
   level:
-   # root: WARN
-     br.com.farias.rest_with_spring_boot_and_java: DEBUG
+    root: INFO
+   # net.sf.jasperreports.engine.*: TRACE
+   # br.com.farias.rest_with_spring_boot_and_java: DEBUG
 spring-doc:
   paths-to-match: /api/**/v1/**
   swagger-ui:

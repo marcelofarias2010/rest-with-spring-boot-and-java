@@ -172,12 +172,12 @@ class PersonControllerXmlTest extends AbstractIntegrationTest {
         assertNotNull(people);
 
         PersonDTO personOne = people.get(0);
-        assertEquals(327, personOne.getId());
+        assertEquals(328, personOne.getId());
         assertEquals("Alvera", personOne.getFirstName());
         assertEquals("McCaughey", personOne.getLastName());
 
         PersonDTO personFour = people.get(3);
-        assertEquals(498, personFour.getId());
+        assertEquals(499, personFour.getId());
         assertEquals("Alys", personFour.getFirstName());
         assertEquals("Ryce", personFour.getLastName());
     }
@@ -203,12 +203,12 @@ class PersonControllerXmlTest extends AbstractIntegrationTest {
         assertNotNull(people);
 
         PersonDTO personOne = people.get(0);
-        assertEquals(163, personOne.getId());
+        assertEquals(164, personOne.getId());
         assertEquals("Alisander", personOne.getFirstName());
         assertEquals("Currell", personOne.getLastName());
 
         PersonDTO personFour = people.get(3);
-        assertEquals(74, personFour.getId());
+        assertEquals(75, personFour.getId());
         assertEquals("Andrew", personFour.getFirstName());
         assertEquals("Ondrich", personFour.getLastName());
     }

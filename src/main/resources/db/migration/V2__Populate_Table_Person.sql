@@ -1,10 +1,10 @@
 INSERT INTO `person` (`id`, `address`, `first_name`, `gender`, `last_name`) VALUES
-(1, 'Ceilândia Sul', 'Marcelo ', 'Male', 'Farias'),
-(2, 'Anchiano - Italia - 1500', 'Leonardo', 'Male', 'da Vinci'),
-(4, 'Anchiano - Italia - 1500', 'Teste para delete', 'Male', 'da Vinci'),
-(5, 'Porto - Portugal', 'Luciana ', 'Female', 'Andrade'),
-(7, 'Kentucky - US', 'Muhamamd ', 'Male', 'Ali BABA'),
-(8, 'Kentucky - US', 'Nelson ', 'Male', 'Mandela'),
-(9, 'Kentucky - US', 'Nelson ', 'Male', 'Mandela'),
-(10, 'Mvezo - South Africa', 'Nelson ', 'Male', 'Mandela'),
-(11, 'Smilja - Croatia', 'Nikola ', 'Male', 'Tesla');
+	(1, 'São Paulo - Brasil', 'Ayrton', 'Male', 'Senna'),
+	(2, 'Anchiano - Italy', 'Leonardo', 'Male', 'da Vinci'),
+	(4, 'Porbandar - India', 'Indira', 'Female', 'Gandhi'),
+	(5, 'Porbandar - India', 'Mahatma', 'Male', 'Gandhi'),
+	(7, 'Kentucky - US', 'Muhamamd', 'Male', 'Ali'),
+	(9, 'Mvezo - South Africa', 'Nelson', 'Male', 'Mandela'),
+	(10, 'Mvezo - South Africa', 'Nelson', 'Male', 'Mandela'),
+	(11, 'Smiljan - Croatia', 'Nikola', 'Male', 'Tesla'),
+	(12, 'Smiljan - Croatia', 'Nikola', 'Male', 'Tesla');

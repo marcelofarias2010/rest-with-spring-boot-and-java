@@ -41,7 +41,7 @@ class PersonRepositoryTest extends AbstractIntegrationTest {
 
         assertNotNull(person);
         assertNotNull(person.getId());
-        assertEquals("Nikola ", person.getFirstName());
+        assertEquals("Nikola", person.getFirstName());
         assertEquals("Tesla", person.getLastName());
         assertEquals("Male", person.getGender());
         assertTrue(person.getEnabled());
@@ -59,7 +59,7 @@ class PersonRepositoryTest extends AbstractIntegrationTest {
 
         assertNotNull(person);
         assertNotNull(person.getId());
-        assertEquals("Nikola ", person.getFirstName());
+        assertEquals("Nikola", person.getFirstName());
         assertEquals("Tesla", person.getLastName());
         assertEquals("Male", person.getGender());
         assertFalse(person.getEnabled());
