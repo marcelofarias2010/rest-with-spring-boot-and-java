@@ -13,7 +13,3 @@
 - Content Negotiation
 - Implementando HATEOAS
 - Suporte ao Swagger
-- Importação e Exportação de arquivos em .CSV, .Xlsx e .PDF
-- Upload e Download de arquivos em várias extensões
-- Regação de relatório em PDF com JasperReport
-- Fluent Interface para envio de emails com Spring email e Gmail
