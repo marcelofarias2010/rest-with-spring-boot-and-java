@@ -3,7 +3,7 @@ package br.com.farias.rest_with_spring_boot_and_java.unittests.services;
 import br.com.farias.rest_with_spring_boot_and_java.data.dto.v1.PersonDTO;
 import br.com.farias.rest_with_spring_boot_and_java.model.Person;
 import br.com.farias.rest_with_spring_boot_and_java.repository.PersonRepository;
-import br.com.farias.rest_with_spring_boot_and_java.services.PersonServices;
+import br.com.farias.rest_with_spring_boot_and_java.services.PersonService;
 import br.com.farias.rest_with_spring_boot_and_java.unittests.mapper.mocks.MockPerson;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -25,12 +25,12 @@ import static org.mockito.Mockito.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
-class PersonServicesTest {
+class PersonServiceTest {
 
     MockPerson input;
 
     @InjectMocks
-    private PersonServices services;
+    private PersonService services;
 
     @Mock
     PersonRepository repository;

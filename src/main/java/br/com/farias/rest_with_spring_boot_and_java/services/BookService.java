@@ -14,7 +14,6 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.PagedModel;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Service;
 import static br.com.farias.rest_with_spring_boot_and_java.mapper.ObjectMapper.parseObject;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -22,9 +21,9 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 
 @Service
-public class BookServices {
+public class BookService {
 
-    private Logger logger = LoggerFactory.getLogger(BookServices.class.getName());
+    private Logger logger = LoggerFactory.getLogger(BookService.class.getName());
 
     @Autowired
     BookRepository repository;

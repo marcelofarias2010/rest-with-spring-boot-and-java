@@ -1,9 +1,6 @@
 package br.com.farias.rest_with_spring_boot_and_java.exception.handler;
 
-import br.com.farias.rest_with_spring_boot_and_java.exception.ExceptionResponse;
-import br.com.farias.rest_with_spring_boot_and_java.exception.FileStorageException;
-import br.com.farias.rest_with_spring_boot_and_java.exception.RequiredObjectIsNullException;
-import br.com.farias.rest_with_spring_boot_and_java.exception.ResourceNotFoundException;
+import br.com.farias.rest_with_spring_boot_and_java.exception.*;
 import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -78,5 +75,15 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
                 request.getDescription(false));
 
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(InvalidJwtAuthenticationException.class)
+    public final ResponseEntity<ExceptionResponse> handleInvalidJwtAuthenticationExceptions(Exception ex, WebRequest request) {
+        ExceptionResponse response = new ExceptionResponse(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+
+        return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
     }
 }

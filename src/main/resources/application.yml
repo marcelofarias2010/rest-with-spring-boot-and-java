@@ -2,6 +2,11 @@ cors:
   originPatterns: http://localhost:8080,http://localhost:3000,https://agenciasus.org.br
 file:
   upload-dir: /UploadDir
+security:
+  jwt:
+    toke:
+      secret-key: 53cr37
+      expire-lenght: 3600000
 email:
   subject: "Default Subject"
   message: "Default Message"
@@ -41,6 +46,8 @@ logging:
    # net.sf.jasperreports.engine.*: TRACE
    # br.com.farias.rest_with_spring_boot_and_java: DEBUG
 spring-doc:
-  paths-to-match: /api/**/v1/**
+  paths-to-match:
+    - /auth/**
+    - /api/**/v1/**
   swagger-ui:
     use-root-path: true

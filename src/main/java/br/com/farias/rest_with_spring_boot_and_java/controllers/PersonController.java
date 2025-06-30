@@ -5,12 +5,11 @@ import br.com.farias.rest_with_spring_boot_and_java.data.dto.v1.PersonDTO;
 
 import br.com.farias.rest_with_spring_boot_and_java.controllers.docs.PersonControllerDocs;
 import br.com.farias.rest_with_spring_boot_and_java.file.exporter.MediaTypes;
-import br.com.farias.rest_with_spring_boot_and_java.services.PersonServices;
+import br.com.farias.rest_with_spring_boot_and_java.services.PersonService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -32,7 +31,7 @@ import java.util.Map;
 public class PersonController implements PersonControllerDocs {
 
     @Autowired
-    private PersonServices services;
+    private PersonService services;
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, WebConstants.APPLICATION_YML})
     @Override
