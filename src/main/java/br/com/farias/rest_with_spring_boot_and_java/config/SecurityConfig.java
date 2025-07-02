@@ -23,6 +23,8 @@ import java.util.Map;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
+
+
     @Autowired
     private JwtTokenProvider tokenProvider;
 
@@ -31,13 +33,11 @@ public class SecurityConfig {
     }
 
     @Bean
-    PasswordEncoder passwordEncoder() {
+    PasswordEncoder passwordEncoder(){
+
         PasswordEncoder pbkdf2Encoder = new Pbkdf2PasswordEncoder(
-                "",
-                8,
-                185000,
-                Pbkdf2PasswordEncoder.SecretKeyFactoryAlgorithm.PBKDF2WithHmacSHA256
-        );
+                "", 8, 185000,
+                Pbkdf2PasswordEncoder.SecretKeyFactoryAlgorithm.PBKDF2WithHmacSHA256);
 
         Map<String, PasswordEncoder> encoders = new HashMap<>();
         encoders.put("pbkdf2", pbkdf2Encoder);
@@ -55,7 +55,7 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         JwtTokenFilter filter = new JwtTokenFilter(tokenProvider);
-
+        //@formatter:off
         return http
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
@@ -64,9 +64,10 @@ public class SecurityConfig {
                         session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authorizeHttpRequests(
-                        authorizeHttpRequest -> authorizeHttpRequest.requestMatchers(
+                        authorizeHttpRequests -> authorizeHttpRequests
+                                .requestMatchers(
                                         "/auth/signin",
-                                        "/auth/refresh/",
+                                        "/auth/refresh/**",
                                         "/auth/createUser",
                                         "/swagger-ui/**",
                                         "/v3/api-docs/**"
@@ -74,8 +75,8 @@ public class SecurityConfig {
                                 .requestMatchers("/api/**").authenticated()
                                 .requestMatchers("/users").denyAll()
                 )
-                .cors(cors -> {
-                })
+                .cors(cors -> {})
                 .build();
+        //@formatter:on
     }
 }

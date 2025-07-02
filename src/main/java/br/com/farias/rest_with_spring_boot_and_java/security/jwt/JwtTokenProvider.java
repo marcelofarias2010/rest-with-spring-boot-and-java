@@ -19,17 +19,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.Base64;
-
 import java.util.Date;
 import java.util.List;
 
 @Service
 public class JwtTokenProvider {
-    @Value("${security.jwt.toke.secret-key:secret}")
+
+    @Value("${security.jwt.token.secret-key:secret}")
     private String secretKey = "secret";
 
-    @Value("${security.jwt.toke.expire-lenght:3600000}")
-    private long validityInMillisconds = 3600000; // 1h
+    @Value("${security.jwt.token.expire-lenght:3600000}")
+    private long validityInMilliseconds = 3600000; // 1h
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -43,12 +43,10 @@ public class JwtTokenProvider {
     }
 
     public TokenDTO createAccessToken(String username, List<String> roles) {
-
         Date now = new Date();
-        Date validity = new Date(now.getTime() + validityInMillisconds);
+        Date validity = new Date(now.getTime() + validityInMilliseconds);
         String accessToken = getAccessToken(username, roles, now, validity);
         String refreshToken = getRefreshToken(username, roles, now);
-
         return new TokenDTO(username, true, now, validity, accessToken, refreshToken);
     }
 
@@ -67,10 +65,9 @@ public class JwtTokenProvider {
     }
 
     private String getRefreshToken(String username, List<String> roles, Date now) {
-
-        Date refreshTokenValidity = new Date(now.getTime() + (validityInMillisconds * 3));
+        Date refreshTokenValidity = new Date(now.getTime() + (validityInMilliseconds * 3));;
         return JWT.create()
-                .withClaim("roles",roles)
+                .withClaim("roles", roles)
                 .withIssuedAt(now)
                 .withExpiresAt(refreshTokenValidity)
                 .withSubject(username)
@@ -78,9 +75,10 @@ public class JwtTokenProvider {
     }
 
     private String getAccessToken(String username, List<String> roles, Date now, Date validity) {
+
         String issuerUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
         return JWT.create()
-                .withClaim("roles",roles)
+                .withClaim("roles", roles)
                 .withIssuedAt(now)
                 .withExpiresAt(validity)
                 .withSubject(username)
@@ -88,11 +86,11 @@ public class JwtTokenProvider {
                 .sign(algorithm);
     }
 
-    public Authentication getAuthentication(String token){
+    public Authentication getAuthentication(String token) {
         DecodedJWT decodedJWT = decodedToken(token);
         UserDetails userDetails = this.userDetailsService
                 .loadUserByUsername(decodedJWT.getSubject());
-        return new UsernamePasswordAuthenticationToken(userDetails,"",userDetails.getAuthorities());
+        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
     private DecodedJWT decodedToken(String token) {
@@ -102,12 +100,11 @@ public class JwtTokenProvider {
         return decodedJWT;
     }
 
-    public String resolveToken(HttpServletRequest request){
+    public String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
 
-        if(refreshTokenContainsBearer(bearerToken)){
-            return bearerToken.substring("Bearer ".length());
-        }
+        //Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZWFuZHJvIiwicm9sZXMiOlsiQURNSU4iLCJNQU5BR0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImV4cCI6MTY1MjcxOTUzOCwiaWF0IjoxNjUyNzE1OTM4fQ.muu8eStsRobqLyrFYLHRiEvOSHAcss4ohSNtmwWTRcY
+        if(refreshTokenContainsBearer(bearerToken)) return bearerToken.substring("Bearer ".length());
         return null;
     }
 
@@ -118,12 +115,12 @@ public class JwtTokenProvider {
     public boolean validateToken(String token){
         DecodedJWT decodedJWT = decodedToken(token);
         try {
-            if(decodedJWT.getExpiresAt().before(new Date())){
+            if(decodedJWT.getExpiresAt().before(new Date())) {
                 return false;
             }
             return true;
         } catch (Exception e) {
-            throw new InvalidJwtAuthenticationException("Expired or Invalid JWT Token" + e);
+            throw new InvalidJwtAuthenticationException("Expired or Invalid JWT Token!");
         }
     }
 }

@@ -8,7 +8,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-@JacksonXmlRootElement(localName = "PersonDTO")
+//@JacksonXmlRootElement(localName = "PersonDTO")
+@XmlRootElement
 public class PersonDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -1,6 +1,7 @@
 package br.com.farias.rest_with_spring_boot_and_java.integrationtests.dto.wrapper.yaml;
 
-import br.com.farias.rest_with_spring_boot_and_java.data.dto.v1.PersonDTO;
+
+import br.com.farias.rest_with_spring_boot_and_java.integrationtests.dto.PersonDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
