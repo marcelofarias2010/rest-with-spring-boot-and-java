@@ -1,5 +1,4 @@
-version: '3.4'
-
+# version: '3.4'
 services:
   db:
     image: mysql:8.0.29
@@ -20,7 +19,7 @@ services:
   rest-with-spring-boot-and-java:
     image: marcelofarias2022/rest-with-spring-boot-and-java
     restart: always
-    build: ./rest-with-spring-boot-and-java
+    build: /rest-with-spring-boot-and-java
     working_dir: /rest-with-spring-boot-and-java
     environment:
       TZ: America/Sao_Paulo
