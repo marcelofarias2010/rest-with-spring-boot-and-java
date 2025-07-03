@@ -19,7 +19,7 @@ class AuthControllerJsonTest extends AbstractIntegrationTest {
     private static TokenDTO tokenDto;
 
     @BeforeAll
-    static void setUp() {
+    static void setUpTest() {
         tokenDto = new TokenDTO();
     }
 

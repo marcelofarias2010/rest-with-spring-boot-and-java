@@ -26,7 +26,7 @@ class AuthControllerYamlTest extends AbstractIntegrationTest {
     private static YAMLMapper objectMapper;
 
     @BeforeAll
-    static void setUp() {
+    static void setUpTest() {
         objectMapper = new YAMLMapper();
 
         tokenDto = new TokenDTO();

@@ -3,29 +3,31 @@ package br.com.farias.rest_with_spring_boot_and_java.repository;
 import br.com.farias.rest_with_spring_boot_and_java.integrationtests.testcontainers.AbstractIntegrationTest;
 import br.com.farias.rest_with_spring_boot_and_java.model.Person;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+// Adicione esta importação
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.ContextConfiguration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(SpringExtension.class)
 @DataJpaTest
+// 1. Adicione esta anotação para impedir a substituição do banco de dados
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@ContextConfiguration(initializers = AbstractIntegrationTest.Initializer.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class PersonRepositoryTest extends AbstractIntegrationTest {
+class PersonRepositoryTest {
 
     @Autowired
-    PersonRepository repository;
+    private PersonRepository repository;
+
     private static Person person;
 
     @BeforeAll
-    static void setUp() {
+    static void setUpTest() {
         person = new Person();
     }
 
@@ -50,7 +52,6 @@ class PersonRepositoryTest extends AbstractIntegrationTest {
     @Test
     @Order(2)
     void disablePerson() {
-
         Long id = person.getId();
         repository.disablePerson(id);
 

@@ -40,7 +40,7 @@ class PersonControllerXmlTest extends AbstractIntegrationTest {
     private static TokenDTO tokenDto;
 
     @BeforeAll
-    static void setUp() {
+    static void setUpTest() {
         objectMapper = new XmlMapper();
         objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 

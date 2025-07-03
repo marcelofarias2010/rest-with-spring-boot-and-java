@@ -46,7 +46,7 @@ class PersonControllerYamlTest extends AbstractIntegrationTest {
     private static TokenDTO tokenDto;
 
     @BeforeAll
-    static void setUp() {
+    static void setUpTest() {
         yamlMapper = new YAMLMapper();
         person = new PersonDTO();
         tokenDto = new TokenDTO();

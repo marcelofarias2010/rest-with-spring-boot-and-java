@@ -40,7 +40,7 @@ class BookControllerYamlTest extends AbstractIntegrationTest {
     private static TokenDTO tokenDto;
 
     @BeforeAll
-    static void setUp() {
+    static void setUpTest() {
         objectMapper = new YAMLMapper();
         book = new BookDTO();
         tokenDto = new TokenDTO();

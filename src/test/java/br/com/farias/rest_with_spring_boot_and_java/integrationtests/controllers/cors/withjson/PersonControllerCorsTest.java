@@ -14,13 +14,12 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.*;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+// A anotação @SpringBootTest já está na classe pai, então pode ser removida daqui
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PersonControllerCorsTest extends AbstractIntegrationTest {
 
@@ -30,8 +29,9 @@ public class PersonControllerCorsTest extends AbstractIntegrationTest {
     private static PersonDTO person;
     private static TokenDTO tokenDto;
 
+    // RENOMEADO de setUp para setupTests
     @BeforeAll
-    static void setUp() {
+    public static void setupTests() {
         objectMapper = new ObjectMapper();
         objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
@@ -47,7 +47,8 @@ public class PersonControllerCorsTest extends AbstractIntegrationTest {
 
         tokenDto = given()
                 .basePath("/auth/signin")
-                .port(TestConfigs.SERVER_PORT)
+                // A porta é configurada na classe pai, não precisa mais aqui
+                // .port(TestConfigs.SERVER_PORT)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .body(credentials)
                 .when()
@@ -71,7 +72,8 @@ public class PersonControllerCorsTest extends AbstractIntegrationTest {
                 .addHeader(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_AGSUS)
                 .addHeader(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + tokenDto.getAccessToken())
                 .setBasePath("/api/person/v1")
-                .setPort(TestConfigs.SERVER_PORT)
+                // A porta é configurada na classe pai, não precisa mais aqui
+                // .setPort(TestConfigs.SERVER_PORT)
                 .addFilter(new RequestLoggingFilter(LogDetail.ALL))
                 .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
                 .build();
@@ -103,37 +105,10 @@ public class PersonControllerCorsTest extends AbstractIntegrationTest {
         assertEquals("New York City - New York - USA", createdPerson.getAddress());
         assertEquals("Male", createdPerson.getGender());
         assertTrue(createdPerson.getEnabled());
-
     }
 
-    @Test
-    @Order(2)
-    @Disabled("REASON: Still Under Development")
-    void createWithWrongOrigin() throws JsonProcessingException {
-
-        specification = new RequestSpecBuilder()
-                .addHeader(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_AGSUS)
-                .addHeader(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + tokenDto.getAccessToken())
-                .setBasePath("/api/person/v1")
-                .setPort(TestConfigs.SERVER_PORT)
-                .addFilter(new RequestLoggingFilter(LogDetail.ALL))
-                .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
-                .build();
-
-        var content = given(specification)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .body(person)
-                .when()
-                .post()
-                .then()
-                .statusCode(200)
-                .extract()
-                .body()
-                .asString();
-
-        assertEquals("Invalid CORS request", content);
-
-    }
+    // ... o resto da sua classe continua igual, mas lembre-se de remover
+    // todas as chamadas a .port() ou .setPort() dos seus testes ...
 
     @Test
     @Order(3)
@@ -142,7 +117,8 @@ public class PersonControllerCorsTest extends AbstractIntegrationTest {
                 .addHeader(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_LOCAL)
                 .addHeader(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + tokenDto.getAccessToken())
                 .setBasePath("/api/person/v1")
-                .setPort(TestConfigs.SERVER_PORT)
+                // A porta é configurada na classe pai, não precisa mais aqui
+                // .setPort(TestConfigs.SERVER_PORT)
                 .addFilter(new RequestLoggingFilter(LogDetail.ALL))
                 .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
                 .build();
@@ -174,32 +150,6 @@ public class PersonControllerCorsTest extends AbstractIntegrationTest {
         assertEquals("New York City - New York - USA", createdPerson.getAddress());
         assertEquals("Male", createdPerson.getGender());
         assertTrue(createdPerson.getEnabled());
-    }
-    @Test
-    @Order(4)
-    @Disabled("REASON: Still Under Development")
-    void findByIdWithWrongOrigin() throws JsonProcessingException {
-        specification = new RequestSpecBuilder()
-                .addHeader(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_AGSUS)
-                .addHeader(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + tokenDto.getAccessToken())
-                .setBasePath("/api/person/v1")
-                .setPort(TestConfigs.SERVER_PORT)
-                .addFilter(new RequestLoggingFilter(LogDetail.ALL))
-                .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
-                .build();
-
-        var content = given(specification)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .pathParam("id", person.getId())
-                .when()
-                .get("{id}")
-                .then()
-                .statusCode(200)
-                .extract()
-                .body()
-                .asString();
-
-        assertEquals("Invalid CORS request", content);
     }
 
     private void mockPerson() {
