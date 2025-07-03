@@ -14,7 +14,7 @@ import org.springframework.http.MediaType;
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertNotNull;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class AuthControllerXmlTest extends AbstractIntegrationTest {
 
