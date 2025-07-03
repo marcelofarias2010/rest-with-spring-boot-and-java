@@ -24,10 +24,10 @@ jobs:
         with:
           java-version: '21'
           distribution: 'adopt'
-          # cache: maven
+          cache: maven
 
       - name: Build Application .jar
-        working-directory: ./rest-with-spring-boot-and-java
+        # working-directory: ./rest-with-spring-boot-and-java
         run: mvn clean package
 
       - name: Docker Compose Build
