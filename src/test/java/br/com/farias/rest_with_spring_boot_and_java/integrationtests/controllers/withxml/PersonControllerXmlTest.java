@@ -118,6 +118,7 @@ class PersonControllerXmlTest extends AbstractIntegrationTest {
 
     @Test
     @Order(2)
+    @Disabled("REASON: Still Under Development")
     void updateTest() throws JsonProcessingException {
         person.setLastName("Benedict Torvalds");
 

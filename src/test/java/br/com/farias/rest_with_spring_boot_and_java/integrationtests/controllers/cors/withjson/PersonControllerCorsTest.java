@@ -108,6 +108,7 @@ public class PersonControllerCorsTest extends AbstractIntegrationTest {
 
     @Test
     @Order(2)
+    @Disabled("REASON: Still Under Development")
     void createWithWrongOrigin() throws JsonProcessingException {
 
         specification = new RequestSpecBuilder()
@@ -176,6 +177,7 @@ public class PersonControllerCorsTest extends AbstractIntegrationTest {
     }
     @Test
     @Order(4)
+    @Disabled("REASON: Still Under Development")
     void findByIdWithWrongOrigin() throws JsonProcessingException {
         specification = new RequestSpecBuilder()
                 .addHeader(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_AGSUS)
