@@ -18,8 +18,22 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-    - uses: actions/setup-java@v4
+
+    - name: Setup Java 21
+      uses: actions/setup-java@v4
       with:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
+
+    - name: Build Application .jar
+      working-directory: ./rest-with-spring-boot-and-java
+      run: mvu clean package
+
+    - name: Docker Compose Build
+      working-directory: ./java
+      run: docker compose build
+
+    - name: Push to Docker Hub Container Registry
+      run: |
+        docker push marcelofarias2022/rest-with-spring-boot-and-java
