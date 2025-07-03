@@ -31,7 +31,7 @@ class AuthControllerJsonTest extends AbstractIntegrationTest {
 
         tokenDto = given()
                 .basePath("/auth/signin")
-                .port(TestConfigs.SERVER_PORT)
+                //.port(TestConfigs.SERVER_PORT)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .body(credentials)
                 .when()
@@ -51,7 +51,7 @@ class AuthControllerJsonTest extends AbstractIntegrationTest {
     void refreshToken() {
         tokenDto = given()
                 .basePath("/auth/refresh")
-                .port(TestConfigs.SERVER_PORT)
+                //.port(TestConfigs.SERVER_PORT)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .pathParam("username", tokenDto.getUsername())
                 .header(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + tokenDto.getRefreshToken())

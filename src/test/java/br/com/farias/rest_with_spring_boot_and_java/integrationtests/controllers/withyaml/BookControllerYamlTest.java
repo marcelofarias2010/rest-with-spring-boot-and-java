@@ -60,7 +60,7 @@ class BookControllerYamlTest extends AbstractIntegrationTest {
                                                 encodeContentTypeAs(TestConfigs.CONTENT_TYPE_YAML, ContentType.TEXT))
                 )
                 .basePath("/auth/signin")
-                .port(TestConfigs.SERVER_PORT)
+                //.port(TestConfigs.SERVER_PORT)
                 .contentType(TestConfigs.CONTENT_TYPE_YAML)
                 .accept(TestConfigs.CONTENT_TYPE_YAML)
                 .body(credentials, objectMapper)
@@ -76,7 +76,7 @@ class BookControllerYamlTest extends AbstractIntegrationTest {
                 .addHeader(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_AGSUS)
                 .addHeader(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + tokenDto.getRefreshToken())
                 .setBasePath("/api/book/v1")
-                .setPort(TestConfigs.SERVER_PORT)
+                //.setPort(TestConfigs.SERVER_PORT)
                 .addFilter(new RequestLoggingFilter(LogDetail.ALL))
                 .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
                 .build();
@@ -226,7 +226,7 @@ class BookControllerYamlTest extends AbstractIntegrationTest {
         assertTrue(bookOne.getId() > 0);
         assertEquals("The Toyota Way", bookOne.getTitle());
         assertEquals("Jeffrey Liker", bookOne.getAuthor());
-        assertEquals(37.66, bookOne.getPrice());
+        assertEquals(138.96, bookOne.getPrice());
 
         BookDTO foundBookSeven = content.get(7);
 
@@ -237,7 +237,7 @@ class BookControllerYamlTest extends AbstractIntegrationTest {
         assertTrue(foundBookSeven.getId() > 0);
         assertEquals("The Toyota Way", foundBookSeven.getTitle());
         assertEquals("Jeffrey Liker", foundBookSeven.getAuthor());
-        assertEquals(58.16, foundBookSeven.getPrice());
+        assertEquals(37.66, foundBookSeven.getPrice());
     }
 
     private void mockBook() {

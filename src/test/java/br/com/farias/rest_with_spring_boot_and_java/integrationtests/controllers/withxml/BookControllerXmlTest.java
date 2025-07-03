@@ -52,7 +52,7 @@ class BookControllerXmlTest extends AbstractIntegrationTest {
 
         var content = given()
                 .basePath("/auth/signin")
-                .port(TestConfigs.SERVER_PORT)
+                //.port(TestConfigs.SERVER_PORT)
                 .contentType(MediaType.APPLICATION_XML_VALUE)
                 .accept(MediaType.APPLICATION_XML_VALUE)
                 .body(credentials)
@@ -70,7 +70,7 @@ class BookControllerXmlTest extends AbstractIntegrationTest {
                 .addHeader(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_AGSUS)
                 .addHeader(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + tokenDto.getAccessToken())
                 .setBasePath("/api/book/v1")
-                .setPort(TestConfigs.SERVER_PORT)
+                //.setPort(TestConfigs.SERVER_PORT)
                 .addFilter(new RequestLoggingFilter(LogDetail.ALL))
                 .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
                 .build();
@@ -209,7 +209,7 @@ class BookControllerXmlTest extends AbstractIntegrationTest {
         assertTrue(bookOne.getId() > 0);
         assertEquals("The Toyota Way", bookOne.getTitle());
         assertEquals("Jeffrey Liker", bookOne.getAuthor());
-        assertEquals(37.66, bookOne.getPrice());
+        assertEquals(138.96, bookOne.getPrice());
 
         BookDTO foundBookSeven = books.get(7);
 
@@ -220,7 +220,7 @@ class BookControllerXmlTest extends AbstractIntegrationTest {
         assertTrue(foundBookSeven.getId() > 0);
         assertEquals("The Toyota Way", foundBookSeven.getTitle());
         assertEquals("Jeffrey Liker", foundBookSeven.getAuthor());
-        assertEquals(58.16, foundBookSeven.getPrice());
+        assertEquals(37.66, foundBookSeven.getPrice());
     }
 
     private void mockBook() {

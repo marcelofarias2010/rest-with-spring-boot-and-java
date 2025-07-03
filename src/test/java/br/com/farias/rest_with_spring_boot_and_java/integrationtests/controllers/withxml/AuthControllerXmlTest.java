@@ -37,7 +37,7 @@ class AuthControllerXmlTest extends AbstractIntegrationTest {
 
         var content = given()
                 .basePath("/auth/signin")
-                .port(TestConfigs.SERVER_PORT)
+                //.port(TestConfigs.SERVER_PORT)
                 .contentType(MediaType.APPLICATION_XML_VALUE)
                 .accept(MediaType.APPLICATION_XML_VALUE)
                 .body(credentials)
@@ -60,7 +60,7 @@ class AuthControllerXmlTest extends AbstractIntegrationTest {
     void refreshToken() throws JsonProcessingException {
         var content = given()
                 .basePath("/auth/refresh")
-                .port(TestConfigs.SERVER_PORT)
+                //.port(TestConfigs.SERVER_PORT)
                 .contentType(MediaType.APPLICATION_XML_VALUE)
                 .accept(MediaType.APPLICATION_XML_VALUE)
                 .pathParam("username", tokenDto.getUsername())

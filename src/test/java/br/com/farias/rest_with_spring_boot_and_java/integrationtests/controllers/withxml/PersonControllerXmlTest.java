@@ -56,7 +56,7 @@ class PersonControllerXmlTest extends AbstractIntegrationTest {
 
         var content = given()
                 .basePath("/auth/signin")
-                .port(TestConfigs.SERVER_PORT)
+                //.port(TestConfigs.SERVER_PORT)
                 .contentType(MediaType.APPLICATION_XML_VALUE)
                 .accept(MediaType.APPLICATION_XML_VALUE)
                 .body(credentials)
@@ -74,7 +74,7 @@ class PersonControllerXmlTest extends AbstractIntegrationTest {
                 .addHeader(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_AGSUS)
                 .addHeader(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + tokenDto.getAccessToken())
                 .setBasePath("/api/person/v1")
-                .setPort(TestConfigs.SERVER_PORT)
+                //.setPort(TestConfigs.SERVER_PORT)
                 .addFilter(new RequestLoggingFilter(LogDetail.ALL))
                 .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
                 .build();

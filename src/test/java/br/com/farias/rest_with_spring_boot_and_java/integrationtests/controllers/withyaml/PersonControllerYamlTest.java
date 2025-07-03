@@ -66,7 +66,7 @@ class PersonControllerYamlTest extends AbstractIntegrationTest {
                                                 encodeContentTypeAs(TestConfigs.CONTENT_TYPE_YAML, ContentType.TEXT))
                 )
                 .basePath("/auth/signin")
-                .port(TestConfigs.SERVER_PORT)
+                //.port(TestConfigs.SERVER_PORT)
                 .contentType(TestConfigs.CONTENT_TYPE_YAML)
                 .accept(TestConfigs.CONTENT_TYPE_YAML)
                 .body(credentials, yamlMapper)
@@ -82,7 +82,7 @@ class PersonControllerYamlTest extends AbstractIntegrationTest {
                 .addHeader(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_AGSUS)
                 .addHeader(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + tokenDto.getRefreshToken())
                 .setBasePath("/api/person/v1")
-                .setPort(TestConfigs.SERVER_PORT)
+                //.setPort(TestConfigs.SERVER_PORT)
                 .addFilter(new RequestLoggingFilter(LogDetail.ALL))
                 .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
                 .build();
