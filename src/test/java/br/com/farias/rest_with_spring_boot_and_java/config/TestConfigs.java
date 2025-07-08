@@ -1,7 +1,7 @@
 package br.com.farias.rest_with_spring_boot_and_java.config;
 
 public interface TestConfigs {
-    int SERVER_PORT = 80;
+    int SERVER_PORT = 8080;
     String HEADER_PARAM_AUTHORIZATION = "Authorization";
     String CONTENT_TYPE_YAML = "application/x-yaml";
     String HEADER_PARAM_ORIGIN = "Origin";
