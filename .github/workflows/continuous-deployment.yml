@@ -42,12 +42,21 @@ jobs:
         # working-directory: ./
         run: docker compose build
 
+
       - name: Push to Google Cloud Artifact Registry
-        run: |                
+        run: |
           docker tag ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-and-java:latest ${{ secrets.REGISTRY_INFO }}:latest
           docker tag ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-and-java:latest ${{ secrets.REGISTRY_INFO }}:${{ github.run_id }}     
           docker push ${{ secrets.REGISTRY_INFO }}:latest
           docker push ${{ secrets.REGISTRY_INFO }}:${{ github.run_id }}
+
+      - name: Deploy to Google Cloud Run
+        run: |
+          gcloud run deploy rest-with-spring-boot-and-java \ 
+            --image ${{ secrets.REGISTRY_INFO }}:latest \
+            --region us-central1 \
+            --platform managed \
+            --allow-unauthenticated
 
       - name: Push to Docker Hub Container Registry
         run: |
